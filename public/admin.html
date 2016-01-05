@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="adminApp">
+<head>
+    <title>Create Show</title>
+    <meta charset="utf-8">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+
+    <link rel="stylesheet" href="styles/createShow.css">
+    <link rel="stylesheet" href="styles/colorsEditing.css">
+    <link rel="stylesheet" href="styles/uploadAudio.css">
+    <link rel="stylesheet" href="styles/previewLine.css">
+    <link rel="stylesheet" href="styles/blockingScreen.css">
+    <link rel="stylesheet" href="styles/loginForm.css">
+    <link rel="stylesheet" href="styles/admin.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <script src="app/adminApp.js"></script>
+    <script src="services/getColorService.js"></script>
+    <script src="services/syncTimeService.js"></script>
+    <script src="controllers/adminAppCtrl.js"></script>
+    <script src="controllers/createShowCtrl.js"></script>
+    <script src="controllers/previewLineCtrl.js"></script>
+    <script src="controllers/colorsEditingCtrl.js"></script>
+    <script src="controllers/uploadAudioCtrl.js"></script>
+    <script src="controllers/loginFormCtrl.js"></script>
+</head>
+<body ng-controller="adminAppCtrl">
+    <div class="mainBox">
+        <div class="bottomBox">
+            <div class="bottomBoxInner">
+                Flare 2015 (c). Kyiv, Ukraine.
+            </div>
+        </div>
+        
+        <ng-include src="'views/loginForm.html'" ng-show="WorkProcess.state=='loginForm'"></ng-include>
+        <ng-include src="'views/createShow.html'" ng-show="WorkProcess.state=='createShow'"></ng-include>
+    </div>
+</body>
+</html>

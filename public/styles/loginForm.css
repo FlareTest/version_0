@@ -1,0 +1,44 @@
+.loginFormContainer {
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    left: 100px;
+    top: 50px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.loginFormIdContainer {
+    width: 400px;
+    height: 50px;
+    position: absolute;
+    left: 100px;
+    top: 50px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.loginFormNameContainer {
+    width: 150px;
+    height: 50px;
+    border-right: 1px solid #ccc;
+    font-family: Calibri, Helvetica;
+    font-size: 30px;
+    padding-left: 10px;
+    padding-top: 5px;
+    display: inline-block;
+}
+
+.loginFormIDFormContainer {
+    position: absolute;
+    width: 248px;
+    height: 48px;
+    right: 0px;
+    top: 0px;
+}
+
+.loginFormSubmit {
+    position: absolute;
+    left: 250px;
+    top: 150px;
+}

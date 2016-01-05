@@ -1,0 +1,15 @@
+<div ng-controller="loginFormCtrl">
+    <div class="loginFormContainer">
+        <div class="loginFormIdContainer">
+            <div class="loginFormNameContainer">
+                Your ID
+            </div>
+            <div>
+               <form novalidate style="display: inline-block">
+                   <input class="loginFormIDFormContainer" ng-model="userID">
+               </form>
+            </div>
+        </div>
+        <button class="loginFormSubmit btn btn-success" ng-click="StartEditing()">Start Editing</button>
+    </div>
+</div>

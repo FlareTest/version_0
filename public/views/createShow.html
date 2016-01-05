@@ -1,0 +1,142 @@
+<div ng-controller="createShowCtrl">
+    <div class="headerBox">
+        <div ng-hide="States.editMode" class="inlineBlock">
+            <button ng-model="button" ng-click="Actions.StartShow()" class="btn btn-success" ng-disabled="States.started">
+                Start Show
+            </button>
+            <button ng-model="button" ng-click="Actions.StopShow()" class="btn btn-danger" ng-disabled="!States.started">
+                Stop Show
+            </button>
+            <button ng-model="button" ng-click="Actions.EditShow()" class="btn btn-warning"
+                    ng-disabled="States.started || States.availableColors.length == 0">
+                Edit Show
+            </button>
+        </div>
+        <div ng-show="States.editMode" class="inlineBlock">
+            <button ng-model="button" ng-click="Actions.SaveShow()" class="btn btn-success">
+                Save Show
+            </button>
+            <button ng-model="button" ng-click="Actions.DiscardShow()" class="btn btn-danger">
+                Discard Changes
+            </button>
+            <button ng-model="button" ng-click="Actions.UpdateSequence()" class="btn btn-info">
+                Update Sequence
+            </button>
+            <button ng-model="button" ng-click="Audio.ShowUploadBox()" class="btn btn-info">
+                Upload audio
+            </button>
+        </div>
+
+        <div class="assignAsNow" ng-click="Actions.AssignStartAsNow()" ng-hide="States.editMode"> now </div>
+        <form novalidate class="startTimeView" ng-hide="States.editMode">
+            Start Time:
+            <input
+                    ng-model="States.startTime.startHH"
+                    class="startTimeViewElement"
+                    ng-style="Validators.CheckHH(States.startTime.startHH)">:
+            <input
+                    ng-model="States.startTime.startMM"
+                    class="startTimeViewElement"
+                    ng-style="Validators.CheckMM(States.startTime.startMM)">:
+            <input
+                    ng-model="States.startTime.startSS"
+                    class="startTimeViewElement"
+                    ng-style="Validators.CheckSS(States.startTime.startSS)">
+        </form>
+
+        <div class="timeView">
+            {{States.currentTime | date: "HH:mm:ss"}}
+        </div>
+        <div class="syncTimeButton">
+            <button class="btn btn-info" ng-click="Actions.SyncTime()">
+                Sync Time
+            </button>
+        </div>
+    </div>
+    <ng-include src="'views/previewLine.html'" ng-show="States.editMode"> </ng-include>
+    <div class="mainErrorBox">
+        <div class="errorBox" ng-show="States.lastError != ''"> {{States.lastError}}</div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th class="col-md-1">#</th>
+            <th class="col-md-2">Speed</th>
+            <th class="col-md-2">Transition</th>
+            <th class="col-md-5">Colors</th>
+            <th class="col-md-2">Start</th>
+        </tr>
+        </thead>
+        <tbody ng-hide="States.editMode">
+        <tr ng-repeat="moment in States.moments">
+            <td class="col-md-1">{{$index + 1}}</td>
+            <td class="col-md-2">{{moment.speed}} </td>
+            <td class="col-md-2">{{moment.transition}} </td>
+            <td class="col-md-5">
+                <div class = "specifiedColorSquare" ng-repeat = "color in moment.colors track by $index">
+                    <div ng-style="GetSquareInner(color)"> </div>
+                </div>
+            </td>
+            <td class="col-md-2">{{moment.start}}</td>
+        </tr>
+        </tbody>
+        <tbody ng-show="States.editMode">
+        <tr ng-repeat="moment in States.moments">
+            <td class="col-md-1">
+                <div
+                        class="glyphicon glyphicon-remove"
+                        ng-click="Actions.RemovePart($index)"
+                        ng-hide="$index == 0">
+
+                </div>
+            </td>
+            <td class="col-md-2">
+                <form novalidate class="singleInputForm">
+                    <input
+                            ng-style="Validators.CheckSpeed($index)"
+                            ng-model="moment.speed"
+                            class="chooseSpeedInput"> ms
+                </form>
+            </td>
+            <td class="col-md-2">
+                <form novalidate class="singleInputForm">
+                    <input
+                            ng-style="Validators.CheckTransition($index)"
+                            ng-model="moment.transition"
+                            class="chooseTransitionInput"> ms
+                </form>
+            </td>
+            <td class="col-md-5">
+                <div class = "specifiedColors">
+                    <div class = "specifiedColorSquare" ng-repeat = "color in moment.colors track by $index">
+                        <div ng-style="GetSquareInner(color)"> </div>
+                    </div>
+                    <div class = "editColorsButton" ng-click="ColorEditingActions.ShowColorsEditionBox($index)">
+                        edit
+                    </div>
+                </div>
+            </td>
+            <td class="col-md-2">
+                <div class="glyphicon glyphicon-play-circle" ng-click="Actions.PlayFromTime($index)" ng-show="Audio.selected">
+                </div>
+                <form novalidate class="singleInputForm">
+                    <input
+                            ng-style="Validators.CheckStartTime($index)"
+                            ng-model="moment.start"
+                            ng-disabled="$index == 0"
+                            class="chooseStartTimeInput"> ms
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <div class = "glyphicon glyphicon-plus" ng-click="Actions.AddPart()"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ng-include src="'views/colorsEditing.html'" ng-hide="ColorEditingStates.editingColorsModeOff"> </ng-include>
+    <ng-include src="'views/uploadAudio.html'" ng-hide="Audio.uploadingAudioModeOff"> </ng-include>
+    <ng-include src="'views/blockingScreen.html'" ng-show="States.savingData || (States.blockingGetRequests > 0)"> </ng-include>
+</div>

@@ -1,0 +1,32 @@
+<div ng-controller="previewLineCtrl">
+    <div class="previewLineMainBox" ng-hide="audioFile == null">
+        <div ng-hide>
+            <audio id="idMainAudio" ngf-src="audioFile"></audio>
+        </div>
+
+        <div class="previewLineProgressPercentage">{{GetPlayedTime()}}</div>
+        <div class="previewLineTotalLength">{{GetTotalLength()}}</div>
+        <div class="previewLineProgressColor" ng-style="colorByProgress"></div>
+        <div class="previewLineAddCurrentTimeButton" ng-click="Actions.CreateMoment()">
+            <div class="glyphicon glyphicon-plus"></div>
+            Create moment from this time
+        </div>
+        <div class="previewLineStart">
+            <div class="glyphicon glyphicon-play" ng-click="Actions.StartPlaying()" ng-show="!started"></div>
+            <div class="glyphicon glyphicon-pause" ng-click="Actions.StopPlaying()" ng-show="started"></div>
+        </div>
+        <div class="previewLineCanvasBox">
+            <canvas id="previewLineCanvas" width="700px" height="40px"> Change something!!! </canvas>
+        </div>
+        <div id = "idPreviewLineProgressMainBox" class="previewLineProgressMainBox" ng-style="progressPositionStyle">
+            <div id = "idPreviewLineProgressBoxCenter" class="previewLineProgressBoxCenter"></div>
+        </div>
+    </div>
+    <div ng-show="audioFile == null">
+        <div class="warningBox">
+            <div class= "previewLineWarningBox">
+                Upload audio, please.
+            </div>
+        </div>
+    </div>
+</div>

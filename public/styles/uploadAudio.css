@@ -1,0 +1,44 @@
+.uploadAudioCover {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(50, 50, 50, 0.4);
+}
+
+.uploadAudioBox {
+    position: absolute;
+    width: 450px;
+    height: 250px;
+    top: 25%;
+    left: 50%;
+    margin:-60px 0 0 -225px;
+    background-color: rgb(250, 250, 250);
+    border: 2px solid #BBB;
+    border-radius: 3px;
+}
+
+.uploadAudioCloseBox {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.uploadAudioSelector {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 390px;
+    height: 30px;
+    border-radius: 2px;
+    font-family: Calibri, Helvetica;
+}
+
+.audioInfoTable {
+    position: absolute;
+    top: 80px;
+}

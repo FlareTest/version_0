@@ -1,0 +1,117 @@
+.previewLineWarningBox {
+    height: 20px;
+    width: 100%;
+    position: relative;
+}
+.previewLineMainBox {
+    height: 70px;
+    width: 100%;
+    position: relative;
+}
+
+.previewLineCanvasBox {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+
+    height: 40px;
+    width: 700px;
+    position: relative;
+    top: 24px;
+    left: 49px;
+    border-radius: 2px;
+    border: 1px solid #DDD;
+    overflow: hidden;
+}
+
+.previewLineProgressPercentage {
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 45px;
+    height: 15px;
+    text-align: right;
+    font-family: Calibri, Helvetica;
+    font-size: x-small;
+    border: 1px solid #DDD;
+    border-radius: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.previewLineTotalLength {
+    position: absolute;
+    top: 7px;
+    right: 30px;
+    width: 45px;
+    height: 15px;
+    text-align: right;
+    font-family: Calibri, Helvetica;
+    font-size: x-small;
+    color: #9E9797;
+    border: 1px solid #DDD;
+    border-radius: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.previewLineProgressColor {
+    position: absolute;
+    top: 2px;
+    left: 55px;
+    width: 40px;
+    height: 15px;
+    border: 1px solid #DDD;
+    border-radius: 2px;
+}
+
+.previewLineAddCurrentTimeButton {
+    position: absolute;
+    top: 2px;
+    left: 100px;
+    width: 170px;
+    font-size: 10px;
+    height: 15px;
+    padding-left: 12px;
+    border: 1px solid #DDD;
+    border-radius: 2px;
+    font-family: Calibri, Helvetica;
+}
+
+.previewLineAddCurrentTimeButton:hover {
+    cursor: pointer;
+}
+
+.previewLineAddCurrentTimeButton:active {
+    background-color: #EEE;
+}
+
+.previewLineProgressMainBox {
+    height: 46px;
+    width: 6px;
+    border-top: 2px solid #BBB;
+    border-bottom: 2px solid #BBB;
+    position: absolute;
+    top: 21px;
+}
+
+.previewLineProgressBoxCenter {
+    height: 43px;
+    width: 0px;
+    border-left: 2px solid #BBB;
+    position: absolute;
+    top: 0px;
+    left: 2px;
+}
+
+.previewLineStart {
+    position: absolute;
+    height: 43px;
+    width: 35px;
+    top: 22px;
+    left: 5px;
+    font-size: 34px;
+    border: 1px solid #DDD;
+    border-radius: 2px;
+}

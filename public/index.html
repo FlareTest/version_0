@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="flareApp">
+<head>
+    <title>Flare</title>
+    <meta charset="utf-8">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="/socket.io/socket.io.js"> </script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+     integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+     integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <script src="app/flareApp.js"></script>
+    <script src="controllers/flareAppCtrl.js"></script>
+    <script src="controllers/loadingVCtrl.js"></script>
+    <script src="controllers/readyVCtrl.js"></script>
+    <script src="services/getColorService.js"></script>
+    <script src="services/syncTimeService.js"></script>
+
+</head>
+<body ng-controller="flareAppCtrl">
+    <ng-include src="'views/loading.html'" ng-show="currentView == 'loading'"></ng-include>
+    <ng-include src="'views/ready.html'" ng-show="currentView == 'ready'"> </ng-include>
+</body>
+</html>

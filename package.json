@@ -1,0 +1,8 @@
+{
+  "name": "flare",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "description": "app for synchronized updating of mobile screens during concert"
+}

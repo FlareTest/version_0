@@ -1,0 +1,52 @@
+<div ng-controller = "colorsEditingCtrl" class="colorsEditingCover">
+    <div class="colorsEditingBox">
+        <div class="saveColorChanges" ng-show="canSave">
+            <div class="glyphicon glyphicon-ok" ng-click="Save()"> </div>
+        </div>
+        <div class="saveColorChanges" ng-show="!canSave">
+            <div class="glyphicon glyphicon-ok disableIcon"> </div>
+        </div>
+
+        <div class="colorsEditingMessageBox" ng-show="colorsDraft.length == 0">
+            <div class="errorBox">
+                Choose at least one color.
+            </div>
+        </div>
+
+        <div class="colorsEditingMessageBox" ng-show="colorsDraft.length == maxPermittedColors">
+            <div class="warningBox">
+                Can chose not more than {{maxPermittedColors}} colors.
+            </div>
+        </div>
+
+        <div class="discardColorChanges">
+            <div class="glyphicon glyphicon-remove" ng-click="Discard()"> </div>
+        </div>
+        <div class="chosenColorsGrid">
+            <div class="chosenColorBox" ng-repeat="color in colorsDraft track by $index">
+                <div class="deleteChosenColorFrame">
+                    <div class="glyphicon glyphicon-remove" ng-click="RemoveColor($index)"></div>
+                </div>
+                <div class="chosenColorFrame">
+                    <div ng-style="GetSquareInner(color)"></div>
+                </div>
+            </div>
+        </div>
+        <div class="availableColorsGrid" ng-hide="colorsDraft.length == maxPermittedColors">
+            <div class="availableColorBox" ng-repeat="color in States.availableColors">
+                <div class="availableColorFrame">
+                    <div ng-style="GetSquareInner($index)" ng-click="AddColor($index)"></div>
+                </div>
+            </div>
+        </div>
+        <div class="availableColorsGrid" ng-show="colorsDraft.length == maxPermittedColors">
+            <div class="availableColorBox" ng-repeat="color in States.availableColors">
+                <div class="availableColorFrame">
+                    <div ng-style="GetSquareInner($index)">
+                        <div class="disableColorBox"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

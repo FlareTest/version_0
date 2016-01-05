@@ -1,0 +1,28 @@
+<div ng-controller="uploadAudioCtrl" class="uploadAudioCover">
+    <div class="uploadAudioBox">
+        <div class="uploadAudioCloseBox">
+            <div class="glyphicon glyphicon-remove" ng-click="Close()"> </div>
+        </div>
+        <button type="file"
+                ngf-select="uploadAudioFile($file, $invalidFiles)"
+                accept="audio/*"
+                class="uploadAudioSelector btn btn-info"
+                ngf-max-size="20MB">
+            Select Audio File
+        </button>
+        <div class="audioInfoTable">
+            <table class="table table-bordered">
+                <tbody ng-hide="audioInfo.file == null">
+                    <tr>
+                        <td class="col-md-1">Name</td>
+                        <td class="col-md-2">{{audioInfo.name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-1">Duration</td>
+                        <td class="col-md-2">{{audioInfo.duration}} s</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

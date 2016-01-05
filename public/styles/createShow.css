@@ -1,0 +1,182 @@
+.headerBox {
+    width: 800px;
+    height: 50px;
+    background-color: #EEE;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.headerBox .btn {
+    margin-top: 7px;
+    margin-left: 7px;
+}
+
+.table th {
+    text-align: center;
+}
+.table td {
+    text-align: center;
+}
+
+.mainErrorBox {
+    width: 800px;
+}
+
+.errorBox {
+     width: 100%;
+     height: 20px;
+     font-family: Calibri, Helvetica;
+     background-color: #ffcccc;
+     color: #ff3232;
+     padding-left: 3px;
+     border: 1px solid #ff3232;
+     border-radius: 2px;
+}
+
+.warningBox {
+    width: 100%;
+    height: 20px;
+    font-family: Calibri, Helvetica;
+    background-color: #ffff66;
+    color: #ff7f50;
+    padding-left: 3px;
+    border: 1px solid #ff7f50;
+    border-radius: 2px;
+}
+
+.bottomBoxInner {
+    width: 800px;
+    text-align: center;
+    font-family: Calibri, Helvetica;
+    padding-top: 10px;
+}
+
+.specifiedColors {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+.specifiedColorSquare {
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border: 1px solid #CCC;
+    overflow: hidden;
+}
+
+.editColorsButton {
+    font-family: Calibri, Helvetica;
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    border: 1px solid #DDD;
+    border-radius: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.editColorsButton:hover {
+    cursor: pointer;
+}
+
+.editColorsButton:active {
+    background-color: #EEE;
+}
+
+.inlineBlock {
+    display: inline-block;
+}
+
+.syncTimeButton {
+    display: inline-block;
+    position: absolute;
+    right: 7px;
+}
+
+.glyphicon:hover {
+    cursor: pointer;
+}
+.glyphicon:active {
+    color: #555;
+}
+
+.disableIcon {
+    color: #CCC;
+}
+.disableIcon:hover {
+    cursor: no-drop;
+}
+.disableIcon:active {
+    color: #CCC;
+}
+
+.singleInputForm {
+    display: inline-block;
+    font-family: Calibri, Helvetica;
+}
+
+.chooseSpeedInput {
+    width: 40px;
+}
+
+.chooseTransitionInput {
+    width: 40px;
+}
+
+.chooseStartTimeInput {
+    width: 60px;
+}
+
+.timeView {
+    width: 60px;
+    height: 20px;
+    position: absolute;
+    right: 110px;
+    top: 15px;
+    border: 1px solid #CCC;
+    padding: 2px;
+    background-color: white;
+}
+
+.assignAsNow {
+    width: 30px;
+    height: 15px;
+    position: absolute;
+    font-size: 12px;
+    right: 345px;
+    top: 17px;
+    border: 1px solid #CCC;
+    border-radius: 2px;
+    background-color: white;
+    font-family: Calibri, Helvetica;
+    text-align: center;
+    display: inline-block;
+}
+
+.assignAsNow:hover {
+    cursor: pointer;
+}
+
+.assignAsNow:active {
+    background-color: #EEE;
+}
+
+.startTimeView {
+    width: 159px;
+    height: 20px;
+    position: absolute;
+    font-size: 13px;
+    right: 180px;
+    top: 15px;
+    border: 1px solid #CCC;
+    background-color: white;
+}
+
+.startTimeViewElement {
+    width: 25px;
+    height: 18px;
+    display: inline-block;
+    text-align: right;
+}
