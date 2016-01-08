@@ -86,6 +86,7 @@ app.post('/newStart', function(req, res) {
             clientWorker.updateStart(plannedStart);
             clientWorker.updateSequence(converters.ConvertMomentsToSequence(JSON.parse(data).moments));
         }
+        res.sendStatus(200);
     });
 });
 
