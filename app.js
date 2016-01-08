@@ -4,11 +4,6 @@ var express = require('express');
     io = require('socket.io').listen(server),
     bodyParser = require('body-parser');
 
-io.configure(function () {
-    io.set("transports", ["xhr-polling"]);
-    io.set("polling duration", 10);
-});
-
 var favicon = require('serve-favicon');
 var fs = require('fs');
 app.use(favicon(__dirname + '/public/favicon.ico'));

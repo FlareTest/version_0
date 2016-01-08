@@ -6,6 +6,9 @@ module.exports = {
         var totalConnections = 0;
         var totalDisconnections = 0;
         io.sockets.on('connection', function(socket) {
+            io.set("transports", ["xhr-polling"]);
+            io.set("polling duration", 10);
+            
             _sockets.push(socket);
             totalConnections++;
             socket.send(JSON.stringify({
