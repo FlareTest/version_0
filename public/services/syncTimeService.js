@@ -5,7 +5,7 @@ module.factory('syncTimeFunctional', function($http) {
         var calcRatioToValue = function(value) {
             var sum = 0;
             for (var i = 0; i < temporaryData.differences.length; i++) {
-                sum += Math.abs(value - temporaryData.differences[i]);
+                sum += Math.abs(value - temporaryData.differences[i].diff) * temporaryData.differences[i].half;
             }
             return sum;
         };
@@ -14,10 +14,10 @@ module.factory('syncTimeFunctional', function($http) {
         var optimalDiff = temporaryData.differences[0];
 
         for (var i = 1; i < temporaryData.differences.length; i++) {
-            var tempRatio = calcRatioToValue(temporaryData.differences[i]);
+            var tempRatio = calcRatioToValue(temporaryData.differences[i].diff);
             if (tempRatio < minimalRatio) {
                 minimalRatio = tempRatio;
-                optimalDiff = temporaryData.differences[i];
+                optimalDiff = temporaryData.differences[i].diff;
             }
         }
 
@@ -26,21 +26,31 @@ module.factory('syncTimeFunctional', function($http) {
     };
 
     var _SyncTime = function(atStart, temporaryData) {
-        $http.get('/currentTime').success(function (response) {
+        var SuccessfulResponse = function (response) {
             var serverTime = response.time;
             var atFinish = Date.now();
             var half = (atFinish - atStart) / 2;
             var expectedServerTime = atStart + half;
             var diff = serverTime - expectedServerTime;
-            temporaryData.differences.push(diff);
-            atStart = Date.now();
+            temporaryData.differences.push({
+                diff: diff,
+                half: half
+            });
             temporaryData.doneIterations++;
             if (temporaryData.doneIterations == temporaryData.iterations) {
-                 _calculateExpectedDiff(temporaryData);
+                _calculateExpectedDiff(temporaryData);
             } else {
                 _SyncTime(Date.now(), temporaryData);
             }
-        });
+        };
+        var UnsuccessfulResponse = function() {
+            _SyncTime(Date.now(), temporaryData);
+        };
+
+        $http.get('/currentTime').then(
+            SuccessfulResponse,
+            UnsuccessfulResponse
+        );
     };
     this.SyncTime = function(temporaryData) {
         temporaryData.differences = [];

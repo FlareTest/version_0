@@ -1,3 +1,5 @@
+var arrayHashing = require('./arrayHashing');
+
 module.exports = {
     createClientWorker: function(app) {
         var savedStart = Date.now() - 0 + 100000000000;
@@ -17,59 +19,14 @@ module.exports = {
             res.json(data);
         });
 
-        /*
-        io.sockets.on('connection', function(socket) {
-            _sockets.push(socket);
-            totalConnections++;
-            socket.send(JSON.stringify({
-                type: 'newStart',
-                data: {
-                    newStart: savedStart
-                }
-            }));
-            socket.send(JSON.stringify({
-                type: 'newSequence',
-                data: {
-                    newSequence: savedSequence
-                }
-            }));
-
-            socket.on('disconnect', function() {
-                totalDisconnections++;
-                _sockets = _sockets.filter(function(_socket) {
-                    return (socket !== _socket);
-                });
-            });
-        });
-        */
 
         this.updateStart = function(newStart) {
             savedStart = newStart;
-            /*_sockets.forEach(function(socket) {
-                socket.send(JSON.stringify({
-                    type: 'newStart',
-                    data: {
-                        newStart: newStart
-                    }
-                }));
-            });*/
         };
 
         this.updateSequence = function(newSequence) {
             savedSequence = newSequence;
-            var stringSequence = JSON.stringify(savedSequence);
-            savedSequenceHash = 0;
-            for (var i = 0; i < stringSequence.length; i++) {
-                savedSequenceHash = (savedSequenceHash * 129 + stringSequence.charCodeAt(i)) % 1000003;
-            }
-            /*_sockets.forEach(function(socket) {
-                socket.send(JSON.stringify({
-                    type: 'newSequence',
-                    data: {
-                        newSequence: newSequence
-                    }
-                }));
-            });*/
+            savedSequenceHash = arrayHashing.getHash(savedSequence);
         };
 
         this.statistics = function() {
