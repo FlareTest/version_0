@@ -1,7 +1,6 @@
 var express = require('express');
     app = express(),
     server = require('http').createServer(app),
-    io = require('socket.io').listen(server),
     bodyParser = require('body-parser');
 
 var favicon = require('serve-favicon');
@@ -16,13 +15,7 @@ app.use(bodyParser.urlencoded({
 var tempData = {};
 
 var converters = require('./services/converters');
-var clientWorker = require('./services/clientWorker').createClientWorker(io);
-
-io.sockets.on('connection', function (socket) {
-    socket.on('message', function (data) {
-        console.log('received data: ' + data);
-    });
-});
+var clientWorker = require('./services/clientWorker').createClientWorker(app);
 
 app.get('/admin', function(req, res) {
     res.sendFile(__dirname + '/public/admin.html');

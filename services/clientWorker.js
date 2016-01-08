@@ -1,11 +1,26 @@
 module.exports = {
-    createClientWorker: function(io) {
+    createClientWorker: function(app) {
         var savedStart = Date.now() - 0 + 100000000000;
+        var savedStartAt = 0;
         var savedSequence = [];
-        var _sockets = [];
+        var savedSequenceAt = 0;
+        //var _sockets = [];
         var totalConnections = 0;
         var totalDisconnections = 0;
-        
+
+        app.get('/catchUpdates', function(req, res) {
+            var data = {};
+            if (req.query.lastUpdateTime < savedStartAt) {
+                data.newStart = savedStart;
+            }
+            if (req.query.lastUpdateTime < savedSequenceAt) {
+                data.newSequence = savedSequence;
+            }
+            data.lastUpdateTime = Math.max(req.query.lastUpdateTime, Math.max(savedStartAt, savedSequenceAt));
+            res.json(data);
+        });
+
+        /*
         io.sockets.on('connection', function(socket) {
             _sockets.push(socket);
             totalConnections++;
@@ -29,29 +44,32 @@ module.exports = {
                 });
             });
         });
+        */
 
         this.updateStart = function(newStart) {
             savedStart = newStart;
-            _sockets.forEach(function(socket) {
+            savedStartAt = Date.now();
+            /*_sockets.forEach(function(socket) {
                 socket.send(JSON.stringify({
                     type: 'newStart',
                     data: {
                         newStart: newStart
                     }
                 }));
-            });
+            });*/
         };
 
         this.updateSequence = function(newSequence) {
             savedSequence = newSequence;
-            _sockets.forEach(function(socket) {
+            savedSequenceAt = Date.now();
+            /*_sockets.forEach(function(socket) {
                 socket.send(JSON.stringify({
                     type: 'newSequence',
                     data: {
                         newSequence: newSequence
                     }
                 }));
-            });
+            });*/
         };
 
         this.statistics = function() {

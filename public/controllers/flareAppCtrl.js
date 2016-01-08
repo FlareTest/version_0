@@ -1,6 +1,6 @@
 var module = angular.module("flareApp");
 
-module.controller("flareAppCtrl", function($scope, $http, $interval, $location, getColorFunctional, syncTimeFunctional) {
+module.controller("flareAppCtrl", function($scope, $http, $interval, $location, getColorFunctional, syncTimeFunctional, $rootScope) {
     $scope.currentView = 'loading';
     var _iterations = 20;
     var _doneIterations = 0;
@@ -20,6 +20,7 @@ module.controller("flareAppCtrl", function($scope, $http, $interval, $location, 
                 syncTimeFunctional.SetDifference(SharedData.expectedDiff);
                 $scope.currentView = 'ready';
                 $interval.cancel(Checker);
+                $rootScope.$broadcast('ready', {});
             }
         };
         var Checker = $interval(CheckForUpdates, 5);
