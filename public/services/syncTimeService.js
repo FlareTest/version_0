@@ -10,8 +10,8 @@ module.factory('syncTimeFunctional', function($http) {
             return sum;
         };
 
-        var minimalRatio = calcRatioToValue(temporaryData.differences[0]);
-        var optimalDiff = temporaryData.differences[0];
+        var minimalRatio = calcRatioToValue(temporaryData.differences[0].diff);
+        var optimalDiff = temporaryData.differences[0].diff;
 
         for (var i = 1; i < temporaryData.differences.length; i++) {
             var tempRatio = calcRatioToValue(temporaryData.differences[i].diff);
@@ -27,7 +27,7 @@ module.factory('syncTimeFunctional', function($http) {
 
     var _SyncTime = function(atStart, temporaryData) {
         var SuccessfulResponse = function (response) {
-            var serverTime = response.time;
+            var serverTime = response.data.time;
             var atFinish = Date.now();
             var half = (atFinish - atStart) / 2;
             var expectedServerTime = atStart + half;
