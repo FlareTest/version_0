@@ -1,7 +1,7 @@
 var module = angular.module('flareApp');
 
 module.controller('readyVCtrl', function($scope, $interval, syncTimeFunctional, getColorFunctional) {
-    var socket = io.connect();
+    var socket = io.connect({'connect timeout': 1000});
     var FetchedData = {
         start: syncTimeFunctional.GetUnreachableTime(),
         sequence: []
