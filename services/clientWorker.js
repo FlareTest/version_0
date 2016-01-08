@@ -1,22 +1,19 @@
 module.exports = {
     createClientWorker: function(app) {
         var savedStart = Date.now() - 0 + 100000000000;
-        var savedStartAt = 0;
         var savedSequence = [];
-        var savedSequenceAt = 0;
+        var savedSequenceHash = 0;
         //var _sockets = [];
         var totalConnections = 0;
         var totalDisconnections = 0;
 
         app.get('/catchUpdates', function(req, res) {
             var data = {};
-            if (req.query.lastUpdateTime < savedStartAt) {
-                data.newStart = savedStart;
-            }
-            if (req.query.lastUpdateTime < savedSequenceAt) {
+            data.newStart = savedStart;
+            if (req.query.lastSequenceHash != savedSequenceHash) {
                 data.newSequence = savedSequence;
             }
-            data.lastUpdateTime = Math.max(req.query.lastUpdateTime, Math.max(savedStartAt, savedSequenceAt));
+            data.lastSequenceHash = savedSequenceHash;
             res.json(data);
         });
 
@@ -48,7 +45,6 @@ module.exports = {
 
         this.updateStart = function(newStart) {
             savedStart = newStart;
-            savedStartAt = Date.now();
             /*_sockets.forEach(function(socket) {
                 socket.send(JSON.stringify({
                     type: 'newStart',
@@ -61,7 +57,11 @@ module.exports = {
 
         this.updateSequence = function(newSequence) {
             savedSequence = newSequence;
-            savedSequenceAt = Date.now();
+            var stringSequence = JSON.stringify(savedSequence);
+            savedSequenceHash = 0;
+            for (var i = 0; i < stringSequence.length; i++) {
+                savedSequenceHash = (savedSequenceHash * 129 + stringSequence.charCodeAt(i)) % 1000003;
+            }
             /*_sockets.forEach(function(socket) {
                 socket.send(JSON.stringify({
                     type: 'newSequence',

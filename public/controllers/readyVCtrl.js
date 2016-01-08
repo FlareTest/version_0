@@ -7,7 +7,7 @@ module.controller('readyVCtrl', function($scope, $interval, $timeout, $http, syn
         sequence: []
     };
 
-    var lastUpdateTime = 1;
+    var lastSequenceHash = -1;
 
     /*socket.on('message', function (data) {
         data = JSON.parse(data);
@@ -20,7 +20,7 @@ module.controller('readyVCtrl', function($scope, $interval, $timeout, $http, syn
     });*/
 
     var UpdateInfo = function() {
-        $http.get('/catchUpdates', {params: {lastUpdateTime: lastUpdateTime}}).success(function (data) {
+        $http.get('/catchUpdates', {params: {lastSequenceHash: lastSequenceHash}}).success(function (data) {
             if (angular.isDefined(data.newStart)) {
                 FetchedData.start = data.newStart;
             }
@@ -28,7 +28,7 @@ module.controller('readyVCtrl', function($scope, $interval, $timeout, $http, syn
                 FetchedData.sequence = data.newSequence;
             }
             console.log(data);
-            lastUpdateTime = data.lastUpdateTime;
+            lastSequenceHash = data.lastSequenceHash;
             $timeout(UpdateInfo, 1000);
         });
     };
