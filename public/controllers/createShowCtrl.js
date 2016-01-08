@@ -39,24 +39,42 @@ module.controller('createShowCtrl', function($scope, $http, $rootScope, syncTime
                 startDate.setSeconds($scope.States.startTime.startSS);
                 startDate.setMilliseconds(0);
                 console.log(startDate);
-                console.log(startDate.getTime());
+                $scope.States.blockingGetRequests++;
+
+                var SuccessfulStart = function() {
+                    $scope.States.started = true;
+                    $scope.States.blockingGetRequests--;
+                };
+                var UnsuccessfulStart = function() {
+                    $scope.States.blockingGetRequests--;
+                };
+
                 $http.post('/newStart', {
                     userID: $scope.States.userID,
                     data: {
                         newStart: startDate.getTime()
                     }
-                });
-                $scope.States.started = true;
+                }).then(SuccessfulStart, UnsuccessfulStart);
             }
         },
 
         StopShow: function () {
+            $scope.States.blockingGetRequests++;
+
+            var SuccessfulStop = function() {
+                $scope.States.started = false;
+                $scope.States.blockingGetRequests--;
+            };
+            var UnsuccessfulStop = function() {
+                $scope.States.blockingGetRequests--;
+            };
+
             $http.post('/newStart', {
                 userID: $scope.States.userID,
                 data: {
                     newStart: syncTimeFunctional.GetUnreachableTime()
                 }
-            });
+            }).then(SuccessfulStop, UnsuccessfulStop);
             $scope.States.started = false;
         },
 
