@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f9c4617f-1cb7-43a5-9008-267a2fc8c042" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/controllers/readyVCtrl.js" afterPath="$PROJECT_DIR$/public/controllers/readyVCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/clientWorker.js" afterPath="$PROJECT_DIR$/services/clientWorker.js" />
-    </list>
+    <list default="true" id="f9c4617f-1cb7-43a5-9008-267a2fc8c042" name="Default" comment="" />
     <ignored path="version_0.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
