@@ -1,6 +1,6 @@
 var module = angular.module('flareApp');
 
-module.controller('readyVCtrl', function($scope, $interval, $timeout, $http, syncTimeFunctional, getColorFunctional) {
+module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $http, syncTimeFunctional, getColorFunctional) {
     //var socket = io.connect();
     var FetchedData = {
         start: syncTimeFunctional.GetUnreachableTime(),
@@ -53,6 +53,11 @@ module.controller('readyVCtrl', function($scope, $interval, $timeout, $http, syn
         height: window.innerHeight + 'px',
         backgroundColor: getColorFunctional.GetRGBString(getColorFunctional.GetDefaultColor())
     };
+
+    angular.element($window).bind('resize', function() {
+        $scope.sheetStyle.width = window.innerWidth + 'px';
+        $scope.sheetStyle.height = window.innerHeight + 'px';
+    });
 
     function ProcessSequence() {
         var defaultColor = getColorFunctional.GetDefaultColor();
