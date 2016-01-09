@@ -68,5 +68,21 @@ module.factory('syncTimeFunctional', function($http) {
     this.GetUnreachableTime = function() {
         return Date.now() - 0 + 100000000000;
     };
+    this.CreateCheckPoint = function(temporaryData, info) {
+        var serverTime = info.time;
+        var atFinish = info.atFinish;
+        var atStart = info.atStart;
+        var half = (atFinish - atStart) / 2;
+        var expectedServerTime = atStart + half;
+        var diff = serverTime - expectedServerTime;
+        if (temporaryData.differences.length > 0){
+            temporaryData.differences.splice(0, 1);
+        }
+        temporaryData.differences.push({
+            diff: diff,
+            half: half
+        });
+        _calculateExpectedDiff(temporaryData);
+    };
     return this;
 });

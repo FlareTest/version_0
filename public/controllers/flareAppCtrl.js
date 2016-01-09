@@ -10,14 +10,14 @@ module.controller("flareAppCtrl", function($scope, $http, $interval, $location, 
     };
 
     var SyncTime = function() {
-        var SharedData = {
+        $scope.SharedData = {
             iterations: _iterations
         };
-        syncTimeFunctional.SyncTime(SharedData);
+        syncTimeFunctional.SyncTime($scope.SharedData);
         var CheckForUpdates = function() {
-            _doneIterations = SharedData.doneIterations;
-            if (SharedData.calculated) {
-                syncTimeFunctional.SetDifference(SharedData.expectedDiff);
+            _doneIterations = $scope.SharedData.doneIterations;
+            if ($scope.SharedData.calculated) {
+                syncTimeFunctional.SetDifference($scope.SharedData.expectedDiff);
                 $scope.currentView = 'ready';
                 $interval.cancel(Checker);
                 $rootScope.$broadcast('ready', {});
