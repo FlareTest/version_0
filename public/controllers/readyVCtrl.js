@@ -20,6 +20,9 @@ module.controller('readyVCtrl', function($scope, $interval, $timeout, $http, syn
     });*/
 
     var UpdateInfo = function() {
+        var info = {
+            atStart: Date.now()
+        };
         $http.get('/catchUpdates', {params: {lastSequenceHash: lastSequenceHash}}).success(function (data) {
             if (angular.isDefined(data.newStart)) {
                 FetchedData.start = data.newStart;
@@ -27,8 +30,12 @@ module.controller('readyVCtrl', function($scope, $interval, $timeout, $http, syn
             if (angular.isDefined(data.newSequence)) {
                 FetchedData.sequence = data.newSequence;
             }
-            console.log(data);
+            //console.log(data);
             lastSequenceHash = data.lastSequenceHash;
+            info.time = data.currentTime;
+            info.atFinish = Date.now();
+            syncTimeFunctional.CreateCheckPoint($scope.$parent.SharedData, info);
+            syncTimeFunctional.SetDifference($scope.$parent.SharedData.expectedDiff);
             $timeout(UpdateInfo, 1000);
         });
     };

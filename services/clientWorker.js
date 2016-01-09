@@ -16,6 +16,7 @@ module.exports = {
                 data.newSequence = savedSequence;
             }
             data.lastSequenceHash = savedSequenceHash;
+            data.currentTime = Date.now();
             res.json(data);
         });
 
