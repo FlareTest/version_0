@@ -31,6 +31,9 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
             if (angular.isDefined(data.newSequence)) {
                 FetchedData.sequence = data.newSequence;
             }
+            if (angular.isDefined(data.personalID)) {
+                $scope.$parent.personalID = data.personalID;
+            }
             //console.log(data);
             lastSequenceHash = data.lastSequenceHash;
             info.time = data.currentTime;

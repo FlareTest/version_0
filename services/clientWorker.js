@@ -7,6 +7,7 @@ module.exports = {
         var savedSequenceHash = 0;
         //var _sockets = [];
         var lastUpdateByID = [];
+        var lastID = 0;
 
         app.get('/catchUpdates', function(req, res) {
             var data = {};
@@ -14,9 +15,17 @@ module.exports = {
             if (req.query.lastSequenceHash != savedSequenceHash) {
                 data.newSequence = savedSequence;
             }
-            if (req.query.personalID != null) {
-                lastUpdateByID[req.query.personalID] = Date.now();
+            if (req.query.personalID != null &&
+                !isNaN(req.query.personalID) &&
+                req.query.personalID >= 0 &&
+                req.query.personalID <= 200000) {
+                lastUpdateByID[Math.round(req.query.personalID)] = Date.now();
+            } else {
+                lastID %= 200000;
+                lastID++;
+                data.personalID = lastID;
             }
+
             data.lastSequenceHash = savedSequenceHash;
             data.currentTime = Date.now();
             res.json(data);
@@ -35,10 +44,7 @@ module.exports = {
         this.statistics = function() {
             var active = 0;
             var now = Date.now();
-            console.log('start');
-            console.log('length ' + lastUpdateByID.length);
             lastUpdateByID.forEach(function(val, key) {
-                console.log(val + " " + key);
                 if (val + 5000 > now) {
                     active++;
                 }
