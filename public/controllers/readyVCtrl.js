@@ -23,7 +23,7 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
         var info = {
             atStart: Date.now()
         };
-        $http.get('/catchUpdates', {params: {lastSequenceHash: lastSequenceHash}}).success(function (data) {
+        var SuccessfulResponse = function (data) {
             if (angular.isDefined(data.newStart)) {
                 FetchedData.start = data.newStart;
             }
@@ -37,7 +37,15 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
             syncTimeFunctional.CreateCheckPoint($scope.$parent.SharedData, info);
             syncTimeFunctional.SetDifference($scope.$parent.SharedData.expectedDiff);
             $timeout(UpdateInfo, 1000);
-        });
+        };
+        var UnsuccessfulResponse = function() {
+            $timeout(UpdateInfo, 1000);
+        };
+        
+        $http.get('/catchUpdates', {params: {lastSequenceHash: lastSequenceHash}}).then(
+            SuccessfulResponse,
+            UnsuccessfulResponse
+        );
     };
 
     $scope.$on('ready', function(event, args) {
