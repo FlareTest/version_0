@@ -17,7 +17,7 @@ module.exports = {
             }
             if (req.query.personalID != null &&
                 !isNaN(req.query.personalID) &&
-                req.query.personalID >= 0 &&
+                req.query.personalID > 0 &&
                 req.query.personalID <= 200000) {
                 lastUpdateByID[Math.round(req.query.personalID)] = Date.now();
             } else {
