@@ -35,7 +35,9 @@ module.exports = {
         this.statistics = function() {
             var active = 0;
             var now = Date.now();
-            lastUpdateByID.forEach(function(val) {
+            console.log('start');
+            lastUpdateByID.forEach(function(val, key) {
+                console.log(val + " " + key);
                 if (val + 5000 > now) {
                     active++;
                 }
