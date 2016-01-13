@@ -4,6 +4,7 @@ module.controller("flareAppCtrl", function($scope, $http, $interval, $location, 
     $scope.currentView = 'loading';
     var _iterations = 20;
     var _doneIterations = 0;
+    $scope.personalID = Math.round(Math.random() * 1000000000);
 
     $scope.getProgress = function() {
         return _doneIterations / _iterations;

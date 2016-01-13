@@ -43,7 +43,10 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
             $timeout(UpdateInfo, 1000);
         };
 
-        $http.get('/catchUpdates', {params: {lastSequenceHash: lastSequenceHash}}).then(
+        $http.get('/catchUpdates', {params: {
+            lastSequenceHash: lastSequenceHash,
+            personalID: $scope.$parent.personalID
+        }}).then(
             SuccessfulResponse,
             UnsuccessfulResponse
         );

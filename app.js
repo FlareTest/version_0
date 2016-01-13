@@ -66,6 +66,10 @@ app.get('/startTime', function(req, res) {
     }
 });
 
+app.get('/active', function(req, res) {
+    res.send(clientWorker.statistics());
+});
+
 app.post('/newStart', function(req, res) {
     var userID = req.body.userID;
     var plannedStart = req.body.data.newStart;

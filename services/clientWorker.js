@@ -6,14 +6,16 @@ module.exports = {
         var savedSequence = [];
         var savedSequenceHash = 0;
         //var _sockets = [];
-        var totalConnections = 0;
-        var totalDisconnections = 0;
+        var lastUpdateByID = [];
 
         app.get('/catchUpdates', function(req, res) {
             var data = {};
             data.newStart = savedStart;
             if (req.query.lastSequenceHash != savedSequenceHash) {
                 data.newSequence = savedSequence;
+            }
+            if (req.query.personalID != null) {
+                lastUpdateByID[req.query.personalID] = Date.now();
             }
             data.lastSequenceHash = savedSequenceHash;
             data.currentTime = Date.now();
@@ -31,10 +33,15 @@ module.exports = {
         };
 
         this.statistics = function() {
+            var active = 0;
+            var now = Date.now();
+            lastUpdateByID.forEach(function(val) {
+                if (val + 5000 > now) {
+                    active++;
+                }
+            });
             return {
-                totalConnections: totalConnections,
-                totalDisconnections: totalDisconnections,
-                connected: totalConnections - totalDisconnections
+                active: active
             }
         };
 
