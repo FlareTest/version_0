@@ -16,6 +16,7 @@ module.exports = {
             }
             if (req.query.personalID != null) {
                 lastUpdateByID[req.query.personalID] = Date.now();
+                console.log(lastUpdateByID);
             }
             data.lastSequenceHash = savedSequenceHash;
             data.currentTime = Date.now();
