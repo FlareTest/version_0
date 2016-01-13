@@ -16,7 +16,6 @@ module.exports = {
             }
             if (req.query.personalID != null) {
                 lastUpdateByID[req.query.personalID] = Date.now();
-                console.log(req.query.personalID);
             }
             data.lastSequenceHash = savedSequenceHash;
             data.currentTime = Date.now();
@@ -37,7 +36,7 @@ module.exports = {
             var active = 0;
             var now = Date.now();
             console.log('start');
-            console.log(lastUpdateByID);
+            console.log(lastUpdateByID.length);
             lastUpdateByID.forEach(function(val, key) {
                 console.log(val + " " + key);
                 if (val + 5000 > now) {
