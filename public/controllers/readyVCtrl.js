@@ -24,6 +24,7 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
             atStart: Date.now()
         };
         var SuccessfulResponse = function (data) {
+            console.log(data);
             if (angular.isDefined(data.newStart)) {
                 FetchedData.start = data.newStart;
             }
@@ -41,7 +42,7 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
         var UnsuccessfulResponse = function() {
             $timeout(UpdateInfo, 1000);
         };
-        
+
         $http.get('/catchUpdates', {params: {lastSequenceHash: lastSequenceHash}}).then(
             SuccessfulResponse,
             UnsuccessfulResponse
