@@ -24,7 +24,7 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
             atStart: Date.now()
         };
         var SuccessfulResponse = function (data) {
-            console.log(data);
+            data = data.data;
             if (angular.isDefined(data.newStart)) {
                 FetchedData.start = data.newStart;
             }
