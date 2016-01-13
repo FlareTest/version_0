@@ -45,6 +45,8 @@ module.exports = {
             var active = 0;
             var now = Date.now();
             lastUpdateByID.forEach(function(val, key) {
+                console.log(val + 5000 > now);
+                console.log(val + " " + key);
                 if (val + 5000 > now) {
                     active++;
                 }
