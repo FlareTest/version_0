@@ -58,14 +58,8 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
     $scope.$on('ready', function(event, args) {
         UpdateInfo();
     });
-
-    $scope.lastColor='';
-    $scope.toPrint = '111';
+    
     var SetColor = function(color) {
-        if (color != $scope.lastColor) {
-            $scope.toPrint = $scope.lastColor;
-        }
-        $scope.lastColor = color;
         $scope.sheetStyle.backgroundColor = color;
     };
 
