@@ -59,7 +59,13 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
         UpdateInfo();
     });
 
+    $scope.lastColor='';
+    $scope.toPrint = '';
     var SetColor = function(color) {
+        if (color != $scope.lastColor) {
+            $scope.toPrint = color;
+        }
+        $scope.lastColor = color;
         $scope.sheetStyle.backgroundColor = color;
     };
 
