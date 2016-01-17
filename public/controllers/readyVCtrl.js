@@ -66,8 +66,11 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
     $scope.sheetStyle = {
         width: '100%',
         height: '100%',
-        backgroundColor: getColorFunctional.GetRGBString(getColorFunctional.GetDefaultColor())
-    };
+        backgroundColor: getColorFunctional.GetRGBString(getColorFunctional.GetDefaultColor()),
+        top: '0',
+        left: '0',
+        position: 'fixed'
+};
 
     /*angular.element($window).bind('resize', function() {
         $scope.sheetStyle.width = 2000 + 'px';
