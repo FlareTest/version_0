@@ -84,7 +84,7 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
                 10
             ));
         };
-        $interval(ColorUpdater, 50);
+        $interval(ColorUpdater, 10);
     }
     ProcessSequence();
 });
