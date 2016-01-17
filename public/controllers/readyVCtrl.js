@@ -58,7 +58,7 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
     $scope.$on('ready', function(event, args) {
         UpdateInfo();
     });
-    
+
     var SetColor = function(color) {
         $scope.sheetStyle.backgroundColor = color;
     };
