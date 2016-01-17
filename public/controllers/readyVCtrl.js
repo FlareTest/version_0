@@ -60,7 +60,7 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
     });
 
     $scope.lastColor='';
-    $scope.toPrint = '';
+    $scope.toPrint = '111';
     var SetColor = function(color) {
         if (color != $scope.lastColor) {
             $scope.toPrint = color;
