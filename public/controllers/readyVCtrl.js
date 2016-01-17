@@ -64,15 +64,15 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
     };
 
     $scope.sheetStyle = {
-        width: window.innerWidth + 'px',
-        height: window.innerHeight + 'px',
+        width: '100%',
+        height: '100%',
         backgroundColor: getColorFunctional.GetRGBString(getColorFunctional.GetDefaultColor())
     };
 
-    angular.element($window).bind('resize', function() {
-        $scope.sheetStyle.width = window.innerWidth + 'px';
-        $scope.sheetStyle.height = window.innerHeight + 'px';
-    });
+    /*angular.element($window).bind('resize', function() {
+        $scope.sheetStyle.width = 2000 + 'px';
+        $scope.sheetStyle.height = 2000 + 'px';
+    });*/
 
     function ProcessSequence() {
         var defaultColor = getColorFunctional.GetDefaultColor();
@@ -84,7 +84,7 @@ module.controller('readyVCtrl', function($window, $scope, $interval, $timeout, $
                 10
             ));
         };
-        $interval(ColorUpdater, 10);
+        $interval(ColorUpdater, 50);
     }
     ProcessSequence();
 });

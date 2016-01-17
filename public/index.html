@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="flareApp">
+<html ng-app="flareApp" ng-style="{height: '100px'}">
 <head>
     <title>Flare</title>
     <meta charset="utf-8">
@@ -18,7 +18,7 @@
     <script src="services/syncTimeService.js"></script>
 
 </head>
-<body ng-controller="flareAppCtrl">
+<body ng-controller="flareAppCtrl" ng-style="{height: '100px'}">
     <ng-include src="'views/loading.html'" ng-show="currentView == 'loading'"></ng-include>
     <ng-include src="'views/ready.html'" ng-show="currentView == 'ready'"> </ng-include>
 </body>
